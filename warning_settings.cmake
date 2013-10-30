@@ -3,7 +3,7 @@ function(get_sane_warning_flags result_var)
 	if(NOT DEFINED ${result_var})
 		check_compiling_with_clang(COMPILING_WITH_CLANG)
 		check_compiling_with_gcc(COMPILING_WITH_GCC)
-		if(${COMPILING_WITH_CLANG})
+		if(COMPILING_WITH_CLANG)
 			#We enable all the warnings, and then whitelist some
 			list(APPEND warnings -Weverything)
 			#Low level stuff
@@ -22,7 +22,7 @@ function(get_sane_warning_flags result_var)
 			list(APPEND warnings -Wno-conversion)
 			#Float equalness can't be checked with ==, but we know that right?
 			list(APPEND warnings -Wno-float-equal)
-		elseif(${COMPILING_WITH_GCC})
+		elseif(COMPILING_WITH_GCC)
 			#default stuff
 			list(APPEND warnings -Wall) #-Weffc++ and Wextra are disabled because of internal compiler errors on gcc 4.7.2
 			#switch related warnings
