@@ -11,4 +11,5 @@ INCLUDE(FindPackageHandleStandardArgs)
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(tinyxml2 DEFAULT_MSG
                                   tinyxml2_LIBRARIES tinyxml2_INCLUDE_DIRS)
 
+set(tinyxml2_FOUND ${TINYXML2_FOUND})
 MARK_AS_ADVANCED(tinyxml2_FOUND tinyxml2_INCLUDE_DIRS tinyxml2_LIBRARIES)

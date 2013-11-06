@@ -11,4 +11,5 @@ INCLUDE(FindPackageHandleStandardArgs)
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(msgpack DEFAULT_MSG
                                   msgpack_LIBRARIES msgpack_INCLUDE_DIRS)
 
+set(msgpack_FOUND ${MSGPACK_FOUND})
 MARK_AS_ADVANCED(msgpack_FOUND msgpack_INCLUDE_DIRS msgpack_LIBRARIES)
