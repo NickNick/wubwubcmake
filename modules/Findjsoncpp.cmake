@@ -12,4 +12,4 @@ INCLUDE(FindPackageHandleStandardArgs)
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(jsoncpp DEFAULT_MSG
                                   jsoncpp_LIBRARIES jsoncpp_INCLUDE_DIRS)
 
-MARK_AS_ADVANCED(jsoncpp_INCLUDE_DIRS jsoncpp_LIBRARIES)
+MARK_AS_ADVANCED(jsoncpp_FOUND jsoncpp_INCLUDE_DIRS jsoncpp_LIBRARIES)
