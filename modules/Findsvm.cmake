@@ -4,7 +4,7 @@
 #  svm_INCLUDE_DIRS - include directories for svm
 #  svm_LIBRARIES - libraries for svm
 
-FIND_PATH(svm_INCLUDE_DIRS svm.h)
+FIND_PATH(svm_INCLUDE_DIRS svm.h PATH_SUFFIXES libsvm)
 FIND_LIBRARY(svm_LIBRARIES NAMES svm)
 
 INCLUDE(FindPackageHandleStandardArgs)
