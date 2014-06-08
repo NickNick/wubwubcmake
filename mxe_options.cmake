@@ -1,0 +1,6 @@
+option(MXE_STATIC_BUILD "Set if building for mxe and need only static libraries" FALSE)
+if(MXE_STATIC_BUILD)
+	set(MXE_BUILD TRUE)
+else()
+	set(MXE_BUILD FALSE)
+endif()
