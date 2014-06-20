@@ -8,8 +8,6 @@ FIND_PATH(Assimp_INCLUDE_DIRS mesh.h HINTS /usr/include/assimp/)
 FIND_LIBRARY(Assimp_LIBRARIES NAMES assimp HINTS /usr/lib/)
 
 INCLUDE(FindPackageHandleStandardArgs)
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(Assimp DEFAULT_MSG
-                                  Assimp_LIBRARIES Assimp_INCLUDE_DIRS)
-
-set(Assimp_FOUND ${Assimp_FOUND})
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(Assimp DEFAULT_MSG Assimp_INCLUDE_DIRS Assimp_LIBRARIES)
+set(Assimp_FOUND ${ASSIMP_FOUND})
 MARK_AS_ADVANCED(Assimp_FOUND Assimp_INCLUDE_DIRS Assimp_LIBRARIES)
