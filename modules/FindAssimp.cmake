@@ -12,5 +12,6 @@ set(Assimp_LIBRARIES ${Assimp_LIBRARY})
 
 include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
 find_package_handle_standard_args(Assimp REQUIRED_VARS Assimp_INCLUDE_DIR Assimp_LIBRARY)
+set(Assimp_FOUND ${ASSIMP_FOUND})
 mark_as_advanced(Assimp_INCLUDE_DIR Assimp_LIBRARY)
 
