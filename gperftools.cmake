@@ -1,0 +1,10 @@
+include("${CMAKE_CURRENT_LIST_DIR}/detect_compiler.cmake")
+
+function(enable_tcmalloc target)
+	check_compiling_with_gcc(gcc)
+	if(gcc)
+		set(disable_builtin_malloc "-fno-builtin-malloc -fno-builtin-calloc -fno-builtin-realloc -fno-builtin-free")
+		target_compile_options(${target} PRIVATE "${disable_builtin_malloc}")
+	endif()
+	target_link_libraries(${target} PRIVATE "tcmalloc")
+endfunction()
