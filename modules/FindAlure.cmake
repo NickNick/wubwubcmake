@@ -4,7 +4,7 @@
 #  Alure_INCLUDE_DIRS - include directories for Alure
 #  Alure_LIBRARIES - libraries for Alure
 
-find_path(Alure_INCLUDE_DIR NAMES alure.h PATHS AL OpenAL)
+find_path(Alure_INCLUDE_DIR NAMES alure.h PATH_SUFFIXES AL OpenAL)
 find_library(Alure_LIBRARY NAMES alure ALURE32)
 
 set(Alure_INCLUDE_DIRS ${Alure_INCLUDE_DIR})
