@@ -4,13 +4,14 @@
 #  jsoncpp_INCLUDE_DIRS - include directories for jsoncpp
 #  jsoncpp_LIBRARIES - libraries for jsoncpp
 
-FIND_PATH(jsoncpp_INCLUDE_DIRS json/json.h
-          PATH_SUFFIXES jsoncpp)
-FIND_LIBRARY(jsoncpp_LIBRARIES NAMES jsoncpp)
+find_path(jsoncpp_INCLUDE_DIR json.h PATHS jsoncpp/json json)
+find_library(jsoncpp_LIBRARY NAMES jsoncpp)
 
-INCLUDE(FindPackageHandleStandardArgs)
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(jsoncpp DEFAULT_MSG
-                                  jsoncpp_LIBRARIES jsoncpp_INCLUDE_DIRS)
+set(jsoncpp_INCLUDE_DIRS ${jsoncpp_INCLUDE_DIR})
+set(jsoncpp_LIBRARIES ${jsoncpp_LIBRARY})
 
+include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
+find_package_handle_standard_args(jsoncpp REQUIRED_VARS jsoncpp_INCLUDE_DIR jsoncpp_LIBRARY)
 set(jsoncpp_FOUND ${JSONCPP_FOUND})
-MARK_AS_ADVANCED(jsoncpp_FOUND jsoncpp_INCLUDE_DIRS jsoncpp_LIBRARIES)
+mark_as_advanced(jsoncpp_INCLUDE_DIR jsoncpp_LIBRARY)
+
