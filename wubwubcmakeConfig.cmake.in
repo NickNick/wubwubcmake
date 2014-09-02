@@ -1,0 +1,5 @@
+include("@CMAKE_INSTALL_PREFIX@/lib/@CMAKE_PROJECT_NAME@/cmake/wub_find_modules.cmake")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "@CMAKE_INSTALL_PREFIX@/lib/@CMAKE_PROJECT_NAME@/cmake")
+
+# vim: set ft=cmake
+
