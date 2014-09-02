@@ -61,5 +61,7 @@ function(sane_install)
 
 	set(true_install_dir ${sane_install_include_install_path}/${sane_install_HEADER_DESTINATION})
 	install(FILES ${sane_install_HEADERS} DESTINATION ${true_install_dir})
-	install(EXPORT ${sane_install_EXPORT_GROUP} FILE "${sane_install_EXPORT_GROUP}Config.cmake" DESTINATION ${sane_install_cmake_install_path})
+	if(DEFINED sane_install_TARGETS)
+		install(EXPORT ${sane_install_EXPORT_GROUP} FILE "${sane_install_EXPORT_GROUP}Config.cmake" DESTINATION ${sane_install_cmake_install_path})
+	endif()
 endfunction(sane_install)
