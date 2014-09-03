@@ -23,6 +23,12 @@
 #
 # == How can I install configuration files to a different place?
 # You can't, sorry. If you think this is a wrong decision, feel free to send a pull request/mail with a fix.
+#
+# == Why do I *have* to specify a version?
+# Well you never want something versionless, right? You always program against *some* version, so include it.
+# If you want to show off your carelessness, just try and find version 0. That'll always work, if something's installed.
+
+set(sane_install_where_we_at ${CMAKE_CURRENT_LIST_DIR})
 
 include(CMakeParseArguments)
 function(sane_install)
@@ -70,4 +76,22 @@ function(sane_install)
 	if(DEFINED sane_install_TARGETS)
 		install(EXPORT ${sane_install_EXPORT_GROUP} FILE "${sane_install_EXPORT_GROUP}Config.cmake" DESTINATION ${sane_install_cmake_config_path})
 	endif()
+	set(sane_install_version_path ${CMAKE_BINARY_DIR}/${sane_install_EXPORT_GROUP}ConfigVersion.cmake)
+	if(${sane_install_EXPORT_GROUP}_VERSION_MAJOR)
+		set(sane_install_export_group_version_major ${${sane_install_EXPORT_GROUP}_VERSION_MAJOR})
+	else()
+		set(sane_install_export_group_version_major 0)
+	endif()
+	if(${sane_install_EXPORT_GROUP}_VERSION_MINOR)
+		set(sane_install_export_group_version_minor ${${sane_install_EXPORT_GROUP}_VERSION_MINOR})
+	else()
+		set(sane_install_export_group_version_minor 0)
+	endif()
+	if(${sane_install_EXPORT_GROUP}_VERSION_PATCH)
+		set(sane_install_export_group_version_patch ${${sane_install_EXPORT_GROUP}_VERSION_PATCH})
+	else()
+		set(sane_install_export_group_version_patch 0)
+	endif()
+	configure_file(${sane_install_where_we_at}/sane_install_generic_version.cmake.in ${sane_install_version_path} @ONLY)
+	install(FILES ${sane_install_version_path} DESTINATION ${sane_install_cmake_config_path})
 endfunction(sane_install)

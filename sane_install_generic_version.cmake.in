@@ -1,0 +1,40 @@
+# A generic version configure file. Set export_group_VERSION_MAJOR and export_group_VERSION_MINOR and you're all set.
+# e.g.
+#
+# set(foo_VERSION_MAJOR 1)
+# set(foo_VERSION_MINOR 0)
+# set(foo_VERSION_PATCH 10) # This one is optional
+#
+# sane_install(TARGETS <targets> EXPORT_GROUP foo)
+#
+# Major revisions do not have backwards compatibility
+# Minor revision do have backwards compatibility
+# Patch versions are bugfixes that are backwards compatible.
+# See http://semver.org
+
+set(fmajor @sane_install_export_group_version_major@)
+set(fminor @sane_install_export_group_version_minor@)
+set(fpatch @sane_install_export_group_version_patch@)
+set(major ${PACKAGE_FIND_VERSION_MAJOR})
+set(minor ${PACKAGE_FIND_VERSION_MINOR})
+set(patch ${PACKAGE_FIND_VERSION_PATCH})
+set(PACKAGE_VERSION "${fmajor}.${fminor}.${fpatch}")
+set(PACKAGE_VERSION_EXACT FALSE)
+set(PACKAGE_VERSION_COMPATIBLE FALSE)
+set(PACKAGE_VERSION_UNSUITABLE TRUE)
+
+if(${fmajor} EQUAL ${major}) # Major versions much match, since the APIs don't match between major versions.
+	set(PACKAGE_VERSION_UNSUITABLE FALSE)
+	if(${fminor} EQUAL ${minor})
+		if(${fpatch} EQUAL ${patch})
+			set(PACKAGE_VERSION_EXACT TRUE)
+			set(PACKAGE_VERSION_COMPATIBLE TRUE)
+		elseif(NOT (${fpatch} LESS ${patch}))
+			set(PACKAGE_VERSION_COMPATIBLE TRUE)
+		endif()
+	elseif(${fminor} GREATER ${minor})
+		# If we have 1.5 and we requested 1.4, we're compatible. Else, we aren't: we could be missing a feature.
+		# Patch numbers don't matter anymore, we bumped a minor version.
+		set(PACKAGE_VERSION_COMPATIBLE TRUE)
+	endif()
+endif()
