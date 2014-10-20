@@ -60,17 +60,18 @@ function(sane_install)
 		set(sane_install_cmake_module_path "lib/${CMAKE_PROJECT_NAME}")
 	endif()
 
+	set(true_header_install_dir ${sane_install_include_path}/${sane_install_HEADER_DESTINATION})
+	install(FILES ${sane_install_HEADERS} DESTINATION ${true_header_install_dir})
+
 	install(
 		TARGETS ${sane_install_TARGETS}
 		EXPORT ${sane_install_EXPORT_GROUP}
 		ARCHIVE DESTINATION ${sane_install_archive_path}
 		LIBRARY DESTINATION ${sane_install_library_path}
 		RUNTIME DESTINATION ${sane_install_runtime_path}
+		INCLUDES DESTINATION ${true_header_install_dir}
 	)
 
-
-	set(true_install_dir ${sane_install_include_path}/${sane_install_HEADER_DESTINATION})
-	install(FILES ${sane_install_HEADERS} DESTINATION ${true_install_dir})
 	install(FILES ${sane_install_CMAKE_MODULES} DESTINATION ${sane_install_cmake_module_path})
 	install(FILES ${sane_install_CMAKE_CONFIGS} DESTINATION ${sane_install_cmake_config_path})
 	if(DEFINED sane_install_TARGETS)
