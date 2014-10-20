@@ -69,7 +69,7 @@ function(sane_install)
 		ARCHIVE DESTINATION ${sane_install_archive_path}
 		LIBRARY DESTINATION ${sane_install_library_path}
 		RUNTIME DESTINATION ${sane_install_runtime_path}
-		INCLUDES DESTINATION ${true_header_install_dir}
+		INCLUDES DESTINATION ${sane_install_include_path}
 	)
 
 	install(FILES ${sane_install_CMAKE_MODULES} DESTINATION ${sane_install_cmake_module_path})
