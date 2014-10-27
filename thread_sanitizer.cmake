@@ -1,18 +1,17 @@
-option(USE_TSAN "Enable Thread Sanitizer, if your compiler supports it" OFF)
+include(${CMAKE_CURRENT_LIST_DIR}/flag_compiles.cmake)
+
+option(USE_TSAN "Enable Thread Sanitizer" OFF)
+
 if(USE_TSAN)
-	include(CheckCXXSourceCompiles)
-	
-	set(tsan_flag "-fsanitize=thread")
+	set(flags "-fsanitize=thread")
+	flag_compiles(FLAGS ${flags} WORKING_FLAG flag)
 
-	set(CMAKE_REQUIRED_FLAGS_BAK "${CMAKE_REQUIRED_FLAGS}")
-	set(CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} ${tsan_flag}")
-	CHECK_CXX_SOURCE_COMPILES("int main() { return 0; }" FLAG_FSANT_SUPPORTED)
-	set(CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS_BAK}")
-
-	if(FLAG_FSANT_SUPPORTED)
-		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${tsan_flag}")
-		set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${tsan_flag}")
-		set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${tsan_flag}")
-		set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${tsan_flag}")
+	if(flag)
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${flag}")
+		set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${flag}")
+		set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${flag}")
+		set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${flag}")
+	else()
+		message(WARNING "Thread Sanitizer requested, but failed to compile with all of these flags: ${flags}. Could be due to other compilation flags.")
 	endif()
-endif(USE_TSAN)
+endif()
