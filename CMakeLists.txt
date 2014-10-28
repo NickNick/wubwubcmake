@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8.12)
 project(wubwubcmake)
 
 set(wubwubcmake_VERSION_MAJOR 1)
-set(wubwubcmake_VERSION_MINOR 0)
+set(wubwubcmake_VERSION_MINOR 1)
 set(wubwubcmake_VERSION_PATCH 0)
 
 include(${CMAKE_CURRENT_LIST_DIR}/sane_install.cmake)
