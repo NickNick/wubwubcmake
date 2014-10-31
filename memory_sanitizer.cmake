@@ -4,7 +4,7 @@ option(USE_MSAN "Enable Memory Sanitizer, if your compiler supports it" OFF)
 set(USE_MSAN_TRACK_ORIGINS 2 CACHE STRING  "0 for no tracking, 1 for displaying origins and 2 for displaying origins and intermediate stores")
 
 if(USE_MSAN)
-	set(flags "-fsanitize=memory -fsanitize-memory-track-origins=${USE_MSAN_TRACK_ORIGINS}")
+	set(flags "-fsanitize=memory -fsanitize-memory-track-origins=${USE_MSAN_TRACK_ORIGINS} -fno-omit-frame-pointer")
 	flag_compiles(FLAGS ${flags} WORKING_FLAG flag)
 
 	if(flag)
