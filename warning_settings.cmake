@@ -24,7 +24,7 @@ function(get_sane_warning_flags result_var)
 			list(APPEND warnings -Wno-float-equal)
 		elseif(COMPILING_WITH_GCC)
 			#default stuff
-			list(APPEND warnings -Wall) #-Weffc++ and Wextra are disabled because of internal compiler errors on gcc 4.7.2
+			list(APPEND warnings -Wall -Wextra)
 			#missing struct member initialisation warnings
 			list(APPEND warnings -Wno-missing-braces -Wno-missing-field-initializers)
 			#low level warnings
