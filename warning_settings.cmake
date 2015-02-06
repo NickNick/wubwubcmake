@@ -28,7 +28,7 @@ function(get_sane_warning_flags result_var)
 			#missing struct member initialisation warnings
 			list(APPEND warnings -Wno-missing-braces -Wno-missing-field-initializers)
 			#low level warnings
-			list(APPEND warnings -Wcast-align -Wstrict-aliasing=2)
+			list(APPEND warnings -Wstrict-aliasing=2)
 			#suspicious coding detection
 			list(APPEND warnings -Wredundant-decls -Wunreachable-code -Wlogical-op -Wundef -Wformat=2 -Wpointer-arith)
 			#Shadowing is too often 'used' and is simply too noisey
