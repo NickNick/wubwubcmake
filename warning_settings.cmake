@@ -25,8 +25,6 @@ function(get_sane_warning_flags result_var)
 		elseif(COMPILING_WITH_GCC)
 			#default stuff
 			list(APPEND warnings -Wall) #-Weffc++ and Wextra are disabled because of internal compiler errors on gcc 4.7.2
-			#switch related warnings
-			list(APPEND warnings -Wswitch-default -Wswitch-enum)
 			#missing struct member initialisation warnings
 			list(APPEND warnings -Wno-missing-braces -Wno-missing-field-initializers)
 			#low level warnings
