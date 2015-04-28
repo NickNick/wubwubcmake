@@ -30,9 +30,7 @@ function(get_sane_warning_flags result_var)
 			#low level warnings
 			list(APPEND warnings -Wstrict-aliasing)
 			#suspicious coding detection
-			list(APPEND warnings -Wredundant-decls -Wunreachable-code -Wlogical-op -Wundef -Wformat=2 -Wpointer-arith)
-			#Shadowing is too often 'used' and is simply too noisey
-			list(APPEND warnings -Wno-shadow)
+			list(APPEND warnings -Wredundant-decls -Wunreachable-code -Wlogical-op -Wundef -Wformat=2 -Wpointer-arith -Wshadow)
 		endif()
 		set(${result_var} ${warnings} PARENT_SCOPE)
 	endif()
