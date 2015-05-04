@@ -27,7 +27,7 @@ function(xxd_process VARNAME DESTINATION SOURCES NAMESPACES)
 	add_custom_command(
 		OUTPUT ${DESTINATION}
 		COMMAND ${CMAKE_COMMAND} -E make_directory "${_destination_path}"
-		COMMAND ${CMAKE_COMMAND} -E echo "" >>"${DESTINATION}"
+		COMMAND ${CMAKE_COMMAND} -E echo "" >"${DESTINATION}"
 		WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
 		COMMENT "Compiling sources to ${_destination_name}"
 		)
