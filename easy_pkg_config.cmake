@@ -22,7 +22,6 @@ function(easy_pkg_config)
 		unset(quiet)
 	endif()
 
-# Get most variables from pkg-config, we require this.
 	find_package(PkgConfig ${required} ${quiet})
 	pkg_check_modules(${packname} ${required} ${quiet} ${modules})
 
