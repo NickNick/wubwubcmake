@@ -22,6 +22,8 @@ function(get_sane_warning_flags result_var)
 			list(APPEND warnings -Wno-conversion)
 			#Float equalness can't be checked with ==, but we know that right?
 			list(APPEND warnings -Wno-float-equal)
+			#Ignore unused arguments, too noisey for now
+			list(APPEND warnings -Qunused-arguments)
 		elseif(COMPILING_WITH_GCC)
 			#default stuff
 			list(APPEND warnings -Wall -Wextra)
