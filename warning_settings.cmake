@@ -13,7 +13,7 @@ function(get_sane_warning_flags result_var)
 			#Pedantic stuff
 			list(APPEND warnings -Wno-newline-eof -Wno-pedantic -Wno-missing-prototypes -Wno-missing-noreturn -Wno-extra-semi  -Wno-covered-switch-default -Wno-unreachable-code)
 			#Pre-C++11 compatibility can be screwed
-			list(APPEND warnings -Wno-c++98-compat-pedantic -Wno-c++14-extensions)
+			list(APPEND warnings -Wno-c++98-compat-pedantic)
 			#C99 stuff that most compilers did add to C++
 			list(APPEND warnings -Wno-variadic-macros -Wno-disabled-macro-expansion -Wno-vla)
 			#Globals, perhaps rethink this since they can really cause issues if they depend on eachother.
