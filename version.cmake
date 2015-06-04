@@ -31,7 +31,7 @@ function(get_git_version OUTPUT)
 	)
 
 	set(DIRTY "-dirty")
-	if("${DIRTY_OUTPUT}" EQUAL "")
+	if(NOT DIRTY_OUTPUT)
 		set(DIRTY "")
 	endif()
 
