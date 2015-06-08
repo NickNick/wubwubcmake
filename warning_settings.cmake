@@ -24,6 +24,8 @@ function(get_sane_warning_flags result_var)
 			list(APPEND warnings -Wno-float-equal)
 			#Ignore unused arguments, too noisey for now
 			list(APPEND warnings -Qunused-arguments)
+			#Ignore missing 'static' keywords as long as it happens in generated Qt4 RC headers
+			list(APPEND warnings -Wno-missing-variable-declarations)
 		elseif(COMPILING_WITH_GCC)
 			#default stuff
 			list(APPEND warnings -Wall -Wextra)
