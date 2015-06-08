@@ -16,11 +16,14 @@ function(generate_version_h TARGET VERSION)
 	# Use a combination of FILE and CONFIGURE_FILE to make sure the file
 	# isn't overwritten when the contents didn't change, to prevent a
 	# constant rebuild of all files that depend on it
+	cmake_policy(PUSH)
+	cmake_policy(SET CMP0053 OLD)
 	file(WRITE ${CMAKE_BINARY_DIR}/${TARGET}_version.h.in
 		"\#define @TARGET@_VERSION \"@VERSION@\"\n"
 	)
 	configure_file(${CMAKE_BINARY_DIR}/${TARGET}_version.h.in
 		${CMAKE_BINARY_DIR}/${TARGET}_version.h @ONLY)
+	cmake_policy(POP)
 endfunction()
 
 function(get_git_version OUTPUT)
