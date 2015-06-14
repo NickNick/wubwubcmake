@@ -13,5 +13,6 @@ configure_file(${CMAKE_CURRENT_LIST_DIR}/wubwubcmakeConfig.cmake.in ${configured
 
 file(GLOB cmake_modules "*.cmake*")
 sane_install(CMAKE_MODULES ${cmake_modules} CMAKE_CONFIGS ${configured_configuration})
+install(DIRECTORY "${CMAKE_SOURCE_DIR}/modules/" DESTINATION "lib/${CMAKE_PROJECT_NAME}/modules")
 
 
