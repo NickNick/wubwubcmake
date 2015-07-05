@@ -17,7 +17,9 @@ function(generate_version_h TARGET VERSION)
 	# isn't overwritten when the contents didn't change, to prevent a
 	# constant rebuild of all files that depend on it
 	cmake_policy(PUSH)
-	cmake_policy(SET CMP0053 OLD)
+	if( "${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}" GREATER 3.1)
+		cmake_policy(SET CMP0053 OLD)
+	endif()
 	file(WRITE ${CMAKE_BINARY_DIR}/${TARGET}_version.h.in
 		"\#define @TARGET@_VERSION \"@VERSION@\"\n"
 	)
