@@ -27,7 +27,8 @@ function(xxd_process VARNAME DESTINATION SOURCES NAMESPACES)
 	add_custom_command(
 		OUTPUT ${DESTINATION}
 		COMMAND ${CMAKE_COMMAND} -E make_directory "${_destination_path}"
-		COMMAND ${CMAKE_COMMAND} -E echo "" >"${DESTINATION}"
+		COMMAND ${CMAKE_COMMAND} -E echo \"\#pragma clang diagnostic push\" >"${DESTINATION}"
+		COMMAND ${CMAKE_COMMAND} -E echo \"\#pragma clang diagnostic ignored \\\"-Wmissing-variable-declarations\\\"\" >>"${DESTINATION}"
 		WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
 		COMMENT "Compiling sources to ${_destination_name}"
 		)
@@ -66,6 +67,13 @@ function(xxd_process VARNAME DESTINATION SOURCES NAMESPACES)
 			APPEND
 			)
 	endforeach()
+	
+	add_custom_command(
+		OUTPUT ${DESTINATION}
+		COMMAND ${CMAKE_COMMAND} -E echo \"\#pragma clang diagnostic pop\" >>"${DESTINATION}"
+		WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+		APPEND
+	)
 
 	set("${VARNAME}" ${DESTINATION} PARENT_SCOPE)
 endfunction(xxd_process)
