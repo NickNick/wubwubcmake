@@ -8,8 +8,8 @@
 # get_git_version(GIT_VERSION)
 # message(${GIT_VERSION}) # prints e.g. "0776acb-dirty"
 #
-# # Same as generate_version_h, but adds the git version after the
-# # version, e.g. 1.0.0-0776acb-dirty
+# # Same as generate_version_h, but adds a myproject_GIT_VERSION constant
+# # containing the git revision after the version, e.g. 1.0.0-0776acb-dirty
 # generate_git_version_h(myproject "1.0.0")
 
 function(generate_version_h TARGET VERSION)
@@ -51,5 +51,10 @@ endfunction()
 
 function(generate_git_version_h TARGET VERSION)
 	get_git_version(GIT_VERSION)
-	generate_version_h(${TARGET} "${VERSION}-${GIT_VERSION}")
+	file(WRITE ${CMAKE_BINARY_DIR}/${TARGET}_version.h.in
+		"\#define @TARGET@_VERSION \"@VERSION@\"\n"
+		"\#define @TARGET@_GIT_VERSION \"@VERSION@-@GIT_VERSION@\"\n"
+	)
+	configure_file(${CMAKE_BINARY_DIR}/${TARGET}_version.h.in
+		${CMAKE_BINARY_DIR}/${TARGET}_version.h @ONLY)
 endfunction()
