@@ -1,5 +1,4 @@
-FIND_PATH(epoxy_INCLUDE_DIRS gl.h
-          PATH_SUFFIXES epoxy)
+FIND_PATH(epoxy_INCLUDE_DIRS epoxy/gl.h)
 FIND_LIBRARY(epoxy_LIBRARIES NAMES epoxy)
 
 INCLUDE(FindPackageHandleStandardArgs)
