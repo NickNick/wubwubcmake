@@ -11,6 +11,9 @@
 # # Same as generate_version_h, but adds a myproject_GIT_VERSION constant
 # # containing the git revision after the version, e.g. 1.0.0-0776acb-dirty
 # generate_git_version_h(myproject "1.0.0")
+# # You can also put extra contents in the version.h file using an
+# # optional parameter:
+# generate_git_version_h(myproject "1.0.0" "\#define @TARGET@_DATE \"@VERSION_DATE@\"\n")
 
 function(generate_version_h TARGET VERSION)
 	# Use a combination of FILE and CONFIGURE_FILE to make sure the file
@@ -22,6 +25,7 @@ function(generate_version_h TARGET VERSION)
 	endif()
 	file(WRITE ${CMAKE_BINARY_DIR}/${TARGET}_version.h.in
 		"\#define @TARGET@_VERSION \"@VERSION@\"\n"
+		${ARGV2}
 	)
 	configure_file(${CMAKE_BINARY_DIR}/${TARGET}_version.h.in
 		${CMAKE_BINARY_DIR}/${TARGET}_version.h @ONLY)
@@ -54,6 +58,7 @@ function(generate_git_version_h TARGET VERSION)
 	file(WRITE ${CMAKE_BINARY_DIR}/${TARGET}_version.h.in
 		"\#define @TARGET@_VERSION \"@VERSION@\"\n"
 		"\#define @TARGET@_GIT_VERSION \"@VERSION@-@GIT_VERSION@\"\n"
+		${ARGV2}
 	)
 	configure_file(${CMAKE_BINARY_DIR}/${TARGET}_version.h.in
 		${CMAKE_BINARY_DIR}/${TARGET}_version.h @ONLY)
