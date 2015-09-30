@@ -46,6 +46,7 @@ set(LOCAL_DCMTK_INCLUDE_DIRS)
 
 
 foreach(lib
+    dcmjpls
     dcmjpeg
     dcmdata
     ofstd
@@ -122,7 +123,7 @@ foreach(dir
 endforeach()
 
 if(UNIX)
-  list(APPEND LOCAL_DCMTK_LIBRARIES z pthread ssl png xml2 jpeg tiff wrap)
+  list(APPEND LOCAL_DCMTK_LIBRARIES z pthread ssl png xml2 jpeg tiff CharLS wrap)
 elseif(WIN32)
   list(APPEND LOCAL_DCMTK_LIBRARIES netapi32 wsock32)
 endif()
@@ -132,7 +133,7 @@ if(DCMTK_ofstd_INCLUDE_DIR)
     ${DCMTK_ofstd_INCLUDE_DIR}
     PATH
     CACHE)
-  list(APPEND LOCAL_DCMTK_INCLUDE_DIRS ${DCMTK_dcmtk_INCLUDE_DIR})
+  list(APPEND LOCAL_DCMTK_INCLUDE_DIRS "${DCMTK_dcmtk_INCLUDE_DIR}" "${DCMTK_dcmtk_INCLUDE_DIR}/..")
   mark_as_advanced(DCMTK_dcmtk_INCLUDE_DIR)
 endif()
 
