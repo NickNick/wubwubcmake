@@ -5,7 +5,7 @@
 #  Alure_LIBRARIES - libraries for Alure
 
 find_path(Alure_INCLUDE_DIR NAMES alure.h PATH_SUFFIXES AL OpenAL)
-find_library(Alure_LIBRARY NAMES alure ALURE32)
+find_library(Alure_LIBRARY NAMES alure ALURE32 ALURE32-static)
 
 set(Alure_INCLUDE_DIRS ${Alure_INCLUDE_DIR})
 set(Alure_LIBRARIES ${Alure_LIBRARY})
