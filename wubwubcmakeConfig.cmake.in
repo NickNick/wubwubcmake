@@ -1,5 +1,11 @@
-include("@CMAKE_INSTALL_PREFIX@/lib/@CMAKE_PROJECT_NAME@/wub_find_modules.cmake")
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "@CMAKE_INSTALL_PREFIX@/lib/")
+
+# Append install directory to the CMAKE_MODULE_PATH. This allows the user to
+# include wubwubcmake files easily:
+#   find_package(wubwubcmake 1.2 REQUIRED)
+#   include(wubwubcmake/sane_install)
+#   include(wubwubcmake/wub_find_modules)
+
+list(APPEND CMAKE_MODULE_PATH "@CMAKE_INSTALL_PREFIX@/lib/")
 
 # vim: set ft=cmake
 
