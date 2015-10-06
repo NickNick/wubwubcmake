@@ -44,11 +44,11 @@ endif()
 set(LOCAL_DCMTK_LIBRARIES)
 set(LOCAL_DCMTK_INCLUDE_DIRS)
 
-
 foreach(lib
     dcmjpls
     dcmjpeg
     dcmdata
+    oflog
     ofstd
     dcmimgle
     ijg8
@@ -58,8 +58,7 @@ foreach(lib
     dcmnet
     dcmqrdb
     dcmsr
-    dcmtls
-    oflog)
+    dcmtls)
 
   find_library(DCMTK_${lib}_LIBRARY
     ${lib}
@@ -102,8 +101,8 @@ foreach(dir
     dcmqrdb
     dcmsr
     dcmtls
-    ofstd
-    oflog)
+    oflog
+    ofstd)
   find_path(DCMTK_${dir}_INCLUDE_DIR
     ${DCMTK_${dir}_TEST_HEADER}
     PATHS
@@ -125,7 +124,7 @@ endforeach()
 if(UNIX)
   list(APPEND LOCAL_DCMTK_LIBRARIES z pthread ssl png xml2 jpeg tiff CharLS wrap)
 elseif(WIN32)
-  list(APPEND LOCAL_DCMTK_LIBRARIES netapi32 wsock32)
+  list(APPEND LOCAL_DCMTK_LIBRARIES netapi32 wsock32 CharLS)
 endif()
 
 if(DCMTK_ofstd_INCLUDE_DIR)
