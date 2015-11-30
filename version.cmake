@@ -20,7 +20,7 @@ function(generate_version_h TARGET VERSION)
 	# isn't overwritten when the contents didn't change, to prevent a
 	# constant rebuild of all files that depend on it
 	cmake_policy(PUSH)
-	if( "${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}" GREATER 3.1)
+	if( "${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}" VERSION_GREATER "3.0")
 		cmake_policy(SET CMP0053 OLD)
 	endif()
 	file(WRITE ${CMAKE_BINARY_DIR}/${TARGET}_version.h.in
@@ -54,6 +54,10 @@ function(get_git_version OUTPUT)
 endfunction()
 
 function(generate_git_version_h TARGET VERSION)
+	cmake_policy(PUSH)
+	if( "${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}" VERSION_GREATER "3.0")
+		cmake_policy(SET CMP0053 OLD)
+	endif()
 	get_git_version(GIT_VERSION)
 	file(WRITE ${CMAKE_BINARY_DIR}/${TARGET}_version.h.in
 		"\#define @TARGET@_VERSION \"@VERSION@\"\n"
@@ -62,4 +66,5 @@ function(generate_git_version_h TARGET VERSION)
 	)
 	configure_file(${CMAKE_BINARY_DIR}/${TARGET}_version.h.in
 		${CMAKE_BINARY_DIR}/${TARGET}_version.h @ONLY)
+	cmake_policy(POP)
 endfunction()
