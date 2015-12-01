@@ -3,6 +3,7 @@ function(get_sane_warning_flags result_var)
 	if(NOT DEFINED ${result_var})
 		check_compiling_with_clang(COMPILING_WITH_CLANG)
 		check_compiling_with_gcc(COMPILING_WITH_GCC)
+		check_compiling_with_msvc(COMPILING_WITH_MSVC)
 		if(COMPILING_WITH_CLANG)
 			#We enable all the warnings, and then whitelist some
 			list(APPEND warnings -Weverything)
@@ -26,7 +27,8 @@ function(get_sane_warning_flags result_var)
 			list(APPEND warnings -Qunused-arguments)
 			#Ignore missing 'static' keywords as long as it happens in generated Qt4 RC headers
 			list(APPEND warnings -Wno-missing-variable-declarations)
-		elseif(COMPILING_WITH_GCC)
+		endif()
+		if(COMPILING_WITH_GCC)
 			#default stuff
 			list(APPEND warnings -Wall -Wextra)
 			#missing struct member initialisation warnings
@@ -35,6 +37,9 @@ function(get_sane_warning_flags result_var)
 			list(APPEND warnings -Wstrict-aliasing)
 			#suspicious coding detection
 			list(APPEND warnings -Wredundant-decls -Wunreachable-code -Wlogical-op -Wundef -Wformat=2 -Wpointer-arith -Wshadow)
+		endif()
+		if(COMPILING_WITH_MSVC)
+			list(APPEND warnings /W4)
 		endif()
 		set(${result_var} ${warnings} PARENT_SCOPE)
 	endif()
