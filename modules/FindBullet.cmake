@@ -1,28 +1,16 @@
 set(packagename Bullet)
 string(TOUPPER ${packagename} PACKAGENAME)
 
-function(msgvar _var)
-	message("${_var}: ${${_var}}")
-endfunction(msgvar)
-
-msgvar(CMAKE_PREFIX_PATH)
-msgvar(CMAKE_SYSTEM_PREFIX_PATH)
-msgvar(CMAKE_MODULE_PATH)
 find_path(${packagename}_INCLUDE_DIR
 	NAMES btBulletCollisionCommon.h
 	PATH_SUFFIXES bullet
 )
-msgvar(${${packagename}_INCLUDE_DIR})
 
 foreach(lib BulletDynamics BulletCollision LinearMath BulletSoftBody)
 	set(libname bullet_${lib}_library)
 	find_library(${libname} ${lib})
 	mark_as_advanced(${libname})
-	msgvar(${libname})
-	msgvar(${packagename}_LIBRARY)
 	if(${libname})
-		msgvar(${${libname}})
-		msgvar(${packagename}_LIBRARY)
 		list(APPEND ${packagename}_LIBRARY ${${libname}})
 	endif()
 endforeach()
