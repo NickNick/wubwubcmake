@@ -7,6 +7,7 @@ if(USE_TSAN)
 	flag_compiles(FLAGS ${flags} WORKING_FLAG flag)
 
 	if(flag)
+		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${flag}")
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${flag}")
 		set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${flag}")
 		set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${flag}")

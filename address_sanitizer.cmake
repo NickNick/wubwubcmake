@@ -7,6 +7,7 @@ if(USE_ASAN)
 	flag_compiles(FLAGS ${flags} WORKING_FLAG asan_flag)
 
 	if(asan_flag)
+		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${asan_flag}")
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${asan_flag}")
 		set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${asan_flag}")
 		set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${asan_flag}")
