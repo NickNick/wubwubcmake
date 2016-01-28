@@ -2,12 +2,12 @@
 # RelWithDebInfo, but it also keeps asserts intact by not defining -DNDEBUG.
 
 set(CMAKE_CXX_FLAGS_RELWITHASSERTS
-	"-O2 -g"
+	"-O2 -g -fno-omit-frame-pointer"
 	CACHE STRING "Flags used by the C++ compiler during RelWithAsserts builds."
 	FORCE)
 
 set(CMAKE_C_FLAGS_RELWITHASSERTS
-	"-O2 -g"
+	"-O2 -g -fno-omit-frame-pointer"
 	CACHE STRING "Flags used by the C compiler during RelWithAsserts builds."
 	FORCE)
 
