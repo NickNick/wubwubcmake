@@ -36,7 +36,7 @@ function(get_sane_warning_flags result_var)
 			#low level warnings
 			list(APPEND warnings -Wstrict-aliasing)
 			#suspicious coding detection
-			list(APPEND warnings -Wredundant-decls -Wunreachable-code -Wlogical-op -Wundef -Wformat=2 -Wpointer-arith -Wshadow)
+			list(APPEND warnings -Wredundant-decls -Wunreachable-code -Wlogical-op -Wundef -Wformat=2 -Wpointer-arith)
 		endif()
 		if(COMPILING_WITH_MSVC)
 			list(APPEND warnings /W4)
