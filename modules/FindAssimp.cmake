@@ -8,7 +8,7 @@ find_path(Assimp_INCLUDE_DIR assimp/mesh.h)
 find_library(Assimp_LIBRARY NAMES assimp)
 
 set(Assimp_INCLUDE_DIRS ${Assimp_INCLUDE_DIR})
-set(Assimp_LIBRARIES ${Assimp_LIBRARY})
+set(Assimp_LIBRARIES ${Assimp_LIBRARY} z)
 
 include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
 find_package_handle_standard_args(Assimp REQUIRED_VARS Assimp_INCLUDE_DIR Assimp_LIBRARY)
