@@ -19,8 +19,9 @@ function(get_sane_warning_flags result_var)
 			list(APPEND warnings -Wno-variadic-macros -Wno-disabled-macro-expansion -Wno-vla)
 			#Globals, perhaps rethink this since they can really cause issues if they depend on eachother.
 			list(APPEND warnings -Wno-global-constructors -Wno-exit-time-destructors)
-			#Conversion from double -> float, most of the time perfectly safe
-			list(APPEND warnings -Wno-conversion)
+			#Conversion from double -> float, most of the time perfectly safe, other way around is also fine.
+			# This may be bad for performance or precision, but usually it's what the programmer expects.
+			list(APPEND warnings -Wno-conversion  -Wno-double-promotion)
 			#Float equalness can't be checked with ==, but we know that right?
 			list(APPEND warnings -Wno-float-equal)
 			#Ignore unused arguments, too noisey for now
