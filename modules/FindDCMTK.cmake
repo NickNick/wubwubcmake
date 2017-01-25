@@ -132,7 +132,7 @@ if(DCMTK_ofstd_INCLUDE_DIR)
     ${DCMTK_ofstd_INCLUDE_DIR}
     PATH
     CACHE)
-  list(APPEND LOCAL_DCMTK_INCLUDE_DIRS "${DCMTK_dcmtk_INCLUDE_DIR}" "${DCMTK_dcmtk_INCLUDE_DIR}/..")
+  list(APPEND LOCAL_DCMTK_INCLUDE_DIRS "${DCMTK_dcmtk_INCLUDE_DIR}")
   mark_as_advanced(DCMTK_dcmtk_INCLUDE_DIR)
 endif()
 
