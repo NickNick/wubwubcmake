@@ -43,6 +43,7 @@ function(get_sane_warning_flags result_var)
 			list(APPEND warnings -Wstrict-aliasing)
 			#suspicious coding detection
 			list(APPEND warnings -Wredundant-decls -Wunreachable-code -Wlogical-op -Wundef -Wformat=2 -Wpointer-arith)
+			list(APPEND warnings -Wdelete-non-virtual-dtor)
 		endif()
 		if(COMPILING_WITH_MSVC)
 			list(APPEND warnings /W4)
