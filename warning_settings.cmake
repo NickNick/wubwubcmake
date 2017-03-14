@@ -33,6 +33,10 @@ function(get_sane_warning_flags result_var)
 				# Double promotion can be bad for performance, but it's usually what the programmer expects.
 				list(APPEND warnings -Wno-double-promotion)
 			endif()
+			if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 3.8.0)
+				# While unsafe in some cases, this warnings warns for all, and thus is a bit too noisey in most projects
+				list(APPEND warnings -Wno-old-style-cast)
+			endif()
 		endif()
 		if(COMPILING_WITH_GCC)
 			#default stuff
