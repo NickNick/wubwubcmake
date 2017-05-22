@@ -35,6 +35,10 @@ function(get_sane_warning_flags result_var)
 				# While unsafe in some cases, this warnings warns for all, and thus is a bit too noisey in most projects
 				list(APPEND warnings -Wno-old-style-cast)
 			endif()
+			if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.99.99)
+				# 0 as nullptr looks less nice, but not unsafe
+				list(APPEND warnings -Wno-zero-as-null-pointer-constant)
+			endif()
 		endif()
 		if(COMPILING_WITH_GCC)
 			#default stuff
