@@ -8,8 +8,9 @@ find_package(Threads)
 
 find_path(check_INCLUDE_DIR check.h)
 find_library(check_LIBRARY NAMES check)
+find_library(subunit_LIBRARY NAMES subunit)
 
-set(check_LIBRARIES ${check_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} rt)
+set(check_LIBRARIES ${check_LIBRARY} ${subunit_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} rt)
 message(STATUS ${check_LIBRARIES})
 set(check_INCLUDE_DIRS ${check_INCLUDE_DIR})
 
